@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 interface Todo {
   id: number;
   text: string;
-  completed: boolean; // 새로 추가된 필드
+  completed: boolean;
 }
 
 const TodoApp: React.FC = () => {
@@ -23,6 +23,10 @@ const TodoApp: React.FC = () => {
     );
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div>
       <ul>
@@ -34,6 +38,7 @@ const TodoApp: React.FC = () => {
               onChange={() => toggleTodo(todo.id)}
             />
             {todo.text}
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>
