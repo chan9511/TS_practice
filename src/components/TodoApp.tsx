@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './TodoApp.css'; 
+import './TodoApp.css';
 
 interface Todo {
   id: number;
@@ -13,6 +13,7 @@ const TodoApp: React.FC = () => {
   const [editing, setEditing] = useState<number | null>(null);
   const [newText, setNewText] = useState('');
   const [newCategory, setNewCategory] = useState('');
+  const [darkMode, setDarkMode] = useState(false); // 다크 모드 상태 변수 추가
 
   // 로컬 스토리지에서 Todo 리스트 불러오기
   useEffect(() => {
@@ -26,6 +27,11 @@ const TodoApp: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+
+  // 다크 모드 토글 함수
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const addTodo = (text: string, category: string) => {
     setTodos([...todos, { id: todos.length + 1, text, completed: false, category }]);
@@ -66,7 +72,10 @@ const TodoApp: React.FC = () => {
   };
 
   return (
-    <div className="todo-app"> 
+    <div className={`todo-app ${darkMode ? 'dark-mode' : ''}`}>
+      <div className="dark-mode-toggle" onClick={toggleDarkMode}>
+        {darkMode ? 'Light Mode' : 'Dark Mode'}
+      </div>
       <ul>
         {todos.map(todo => (
           <li key={todo.id}>

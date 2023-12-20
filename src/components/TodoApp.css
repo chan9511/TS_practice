@@ -1,7 +1,16 @@
+/* src/components/TodoApp.css */
+
 .todo-app {
     font-family: 'Arial', sans-serif;
     max-width: 400px;
     margin: 20px auto;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* 다크 모드 스타일 추가 */
+  .todo-app.dark-mode {
+    background-color: #333;
+    color: #fff;
   }
   
   ul {
@@ -24,5 +33,20 @@
   
   button:hover {
     background-color: #ddd;
+  }
+  
+  /* 다크 모드 토글 버튼 스타일 추가 */
+  .dark-mode-toggle {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #ddd;
+    color: #333;
+    text-align: center;
+  }
+  
+  .dark-mode-toggle:hover {
+    background-color: #555;
+    color: #fff
   }
   
